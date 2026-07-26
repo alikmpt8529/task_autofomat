@@ -1,6 +1,6 @@
 # タスク時間自動割当（task_autofomat）
 
-[![Version v1.4](https://img.shields.io/badge/version-v1.4-0f6a5a.svg)](docs/詳細設計書.md)
+[![Version v1.5](https://img.shields.io/badge/version-v1.5-0f6a5a.svg)](docs/詳細設計書.md)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-blue.svg)](https://alikmpt8529.github.io/task_autofomat/)
 
 限られた時間のなかで複数タスクを進めるための、ブラウザ完結型のスケジュール作成ツールです。
@@ -13,7 +13,7 @@
 
 👉 **[https://alikmpt8529.github.io/task_autofomat/](https://alikmpt8529.github.io/task_autofomat/)**
 
-## 現在のバージョン: v1.4
+## 現在のバージョン: v1.5
 
 ## 機能
 
@@ -29,6 +29,10 @@
 - **均等割当** — 総時間をタスク数で均等に割り振る補助機能
 
 ## バージョン履歴 (Changelog)
+
+### v1.5 (2026-07-26)
+- **更新**: 開いた端末（スマートフォン、タブレット、PC）の画面幅に100%自動フィットする、極めて高品質なフルレスポンシブデザインを実装。
+- **改善**: 画面幅 768px 以下のモバイル環境において、テーブル（表形式）を自動的に1カラムのスタイリッシュな「カード型レイアウト」へ再構築する動的CSS変換処理を追加。
 
 ### v1.4 (2026-07-26)
 - **公開**: GitHub Pagesを有効化し、Web上の公開URLから誰でも即座にアプリにアクセス・利用できるようにデプロイ

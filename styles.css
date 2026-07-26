@@ -356,9 +356,38 @@ tbody tr.over-limit td {
   margin-top: 0.9rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .page {
-    padding: 1.25rem 0.9rem 2rem;
+    padding: 1.25rem 0.75rem 2rem;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .now-clock {
+    justify-items: start;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  #now-time {
+    font-size: 1.1rem;
+    text-align: right;
+  }
+
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  label {
+    width: 100%;
   }
 
   input[type="number"],
@@ -366,7 +395,121 @@ tbody tr.over-limit td {
     width: 100%;
   }
 
-  .task-form .btn {
+  .btn {
     width: 100%;
+    padding: 0.65rem 1.2rem;
+    text-align: center;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 1rem;
+  }
+
+  /* テーブルをカードレイアウトに自動変換 */
+  .table-wrap {
+    overflow-x: visible;
+  }
+
+  table {
+    min-width: 100%;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none; /* スマホでは表頭を非表示 */
+  }
+
+  tr {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(28, 36, 33, 0.03);
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+
+  tr:hover {
+    box-shadow: 0 6px 18px rgba(28, 36, 33, 0.06);
+  }
+
+  tbody tr.over-limit {
+    border-color: #fecaca;
+  }
+
+  td {
+    border: none;
+    padding: 0.45rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+  }
+
+  td:not(:last-child) {
+    border-bottom: 1px dashed rgba(213, 208, 196, 0.4);
+  }
+
+  /* data-label 属性をラベルとして左側に表示 */
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-align: left;
+    margin-right: 1rem;
+  }
+
+  /* 行の最初の要素（番号）をバッジのように強調 */
+  td[data-label="番号"] {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.1rem;
+    border-bottom: 1px dashed var(--line);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  td[data-label="番号"]::before {
+    font-size: 0.85rem;
+  }
+
+  /* タスク名を目立たせる */
+  td[data-label="タスク名"] {
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .duration-input {
+    width: 6.5rem !important;
+    text-align: right;
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+  }
+
+  .row-actions {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .row-actions .btn {
+    width: auto;
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
   }
 }

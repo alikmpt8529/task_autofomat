@@ -549,15 +549,15 @@
         const rowClass = classes.length ? ` class="${classes.join(" ")}"` : "";
         return (
           `<tr${rowClass} data-id="${task.id}">` +
-          `<td>${task.order}</td>` +
-          `<td>${escapeHtml(task.name)}${task.completed ? "（完了）" : ""}</td>` +
-          `<td>` +
+          `<td data-label="番号">${task.order}</td>` +
+          `<td data-label="タスク名">${escapeHtml(task.name)}${task.completed ? "（完了）" : ""}</td>` +
+          `<td data-label="所要時間">` +
           `<input class="duration-input" type="number" min="1" step="1" value="${task.durationMinutes}" ${task.completed ? "disabled " : ""}aria-label="${escapeHtml(task.name)} の所要時間" />` +
           `</td>` +
-          `<td>${formatClock(task.startAt, base)}</td>` +
-          `<td>${formatClock(task.endAt, base)}</td>` +
-          `<td><span class="remaining-cell is-${progress.status}" data-remaining-for="${task.id}">${escapeHtml(progress.label)}</span></td>` +
-          `<td>` +
+          `<td data-label="開始時刻">${formatClock(task.startAt, base)}</td>` +
+          `<td data-label="終了時刻">${formatClock(task.endAt, base)}</td>` +
+          `<td data-label="残り時間"><span class="remaining-cell is-${progress.status}" data-remaining-for="${task.id}">${escapeHtml(progress.label)}</span></td>` +
+          `<td data-label="操作">` +
           `<div class="row-actions">` +
           `<button type="button" class="btn small move-up"${task.order === 1 || task.completed ? " disabled" : ""}>上へ</button>` +
           `<button type="button" class="btn small move-down"${task.order === state.tasks.length || task.completed ? " disabled" : ""}>下へ</button>` +
