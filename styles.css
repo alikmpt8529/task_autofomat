@@ -52,6 +52,18 @@ body {
   letter-spacing: 0.02em;
 }
 
+.version-tag {
+  font-size: 0.4em;
+  font-weight: normal;
+  color: var(--muted);
+  background: rgba(28, 36, 33, 0.06);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  display: inline-block;
+}
+
 .now-clock {
   display: grid;
   justify-items: end;
