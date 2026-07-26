@@ -1,12 +1,19 @@
 # タスク時間自動割当（task_autofomat）
 
-[![Version v1.3](https://img.shields.io/badge/version-v1.3-0f6a5a.svg)](docs/詳細設計書.md)
+[![Version v1.4](https://img.shields.io/badge/version-v1.4-0f6a5a.svg)](docs/詳細設計書.md)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-blue.svg)](https://alikmpt8529.github.io/task_autofomat/)
 
 限られた時間のなかで複数タスクを進めるための、ブラウザ完結型のスケジュール作成ツールです。
 
 総時間を決め、タスクを細分化して時間を割り振り、開始時刻から各タスクの開始・終了時刻を自動計算します。現在時刻と残り時間もリアルタイムで表示します。
 
-## 現在のバージョン: v1.3
+## 公開URL (GitHub Pages)
+
+本ツールはインストール不要で、以下のURLからWebブラウザ上で今すぐご利用いただけます：
+
+👉 **[https://alikmpt8529.github.io/task_autofomat/](https://alikmpt8529.github.io/task_autofomat/)**
+
+## 現在のバージョン: v1.4
 
 ## 機能
 
@@ -22,6 +29,9 @@
 - **均等割当** — 総時間をタスク数で均等に割り振る補助機能
 
 ## バージョン履歴 (Changelog)
+
+### v1.4 (2026-07-26)
+- **公開**: GitHub Pagesを有効化し、Web上の公開URLから誰でも即座にアプリにアクセス・利用できるようにデプロイ
 
 ### v1.3 (2026-07-26)
 - **追加**: 完了タスクをマークし、次のタスクのスケジュールを現在時刻から再計算して移行する「完了して次へ」/「次へ」ボタン機能を追加
