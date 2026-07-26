@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>タスク時間自動割当</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header-top">
+          <h1>タスク時間自動割当</h1>
+          <div class="now-clock" aria-live="polite">
+            <span class="now-label">現在時刻</span>
+            <time id="now-time" datetime="">--:--:--</time>
+          </div>
+        </div>
+        <p class="lede">総時間を決め、タスクに時間を割り振り、開始時刻からスケジュールを組み立てます。</p>
+      </header>
+
+      <p id="status-toast" class="toast" hidden role="status" aria-live="polite"></p>
+
+      <main class="main">
+        <section class="panel" aria-labelledby="total-heading">
+          <h2 id="total-heading">1. 総時間</h2>
+          <form id="total-form" class="form-row">
+            <label>
+              時間
+              <input id="total-hours" type="number" min="0" step="1" value="2" />
+            </label>
+            <label>
+              分
+              <input id="total-minutes" type="number" min="0" max="59" step="1" value="30" />
+            </label>
+            <button type="submit" class="btn primary">決定</button>
+            <p id="total-display" class="meta" aria-live="polite"></p>
+          </form>
+          <p id="total-error" class="error" hidden></p>
+        </section>
+
+        <section class="panel" aria-labelledby="start-heading">
+          <h2 id="start-heading">2. 開始時刻</h2>
+          <form id="start-form" class="form-row">
+            <label>
+              開始
+              <input id="start-time" type="time" value="09:00" required />
+            </label>
+            <button type="submit" class="btn primary">決定</button>
+            <button type="button" id="use-now" class="btn">現在時刻を取得</button>
+          </form>
+          <p id="start-error" class="error" hidden></p>
+        </section>
+
+        <section class="panel" aria-labelledby="task-heading">
+          <h2 id="task-heading">3. タスク追加</h2>
+          <form id="task-form" class="form-row task-form">
+            <label class="grow">
+              タスク名
+              <input id="task-name" type="text" maxlength="100" placeholder="例: 資料作成" required />
+            </label>
+            <label>
+              所要（分）
+              <input id="task-duration" type="number" min="1" step="1" value="30" required />
+            </label>
+            <button type="submit" class="btn primary">追加</button>
+          </form>
+          <div class="form-row actions">
+            <button type="button" id="allocate-evenly" class="btn">均等に割る</button>
+            <button type="button" id="clear-tasks" class="btn danger-outline">すべて削除</button>
+          </div>
+          <p id="form-error" class="error" hidden></p>
+        </section>
+
+        <section class="panel" aria-labelledby="summary-heading">
+          <h2 id="summary-heading">4. 割当サマリー</h2>
+          <div id="summary" class="summary" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="progress-heading">
+          <h2 id="progress-heading">5. 進行中のタスク</h2>
+          <div id="progress-panel" class="progress-panel">
+            <div class="progress-copy">
+              <p id="progress-status" class="meta">タスクを追加してください</p>
+              <p id="progress-current" class="progress-current"></p>
+            </div>
+            <button type="button" id="next-task-btn" class="btn primary next-btn" hidden>
+              次へ
+            </button>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="table-heading">
+          <h2 id="table-heading">6. タスク一覧</h2>
+          <div class="table-wrap">
+            <table id="task-table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">タスク名</th>
+                  <th scope="col">所要</th>
+                  <th scope="col">開始</th>
+                  <th scope="col">終了</th>
+                  <th scope="col">残り</th>
+                  <th scope="col">操作</th>
+                </tr>
+              </thead>
+              <tbody id="task-tbody"></tbody>
+            </table>
+          </div>
+          <p id="plan-range" class="meta" aria-live="polite"></p>
+        </section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
