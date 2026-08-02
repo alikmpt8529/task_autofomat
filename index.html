@@ -7,13 +7,37 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="focus-overlay" class="focus-overlay" hidden aria-hidden="true">
+      <div class="focus-inner">
+        <p id="focus-task-name" class="focus-task-name"></p>
+        <div class="focus-ring-wrap" aria-hidden="true">
+          <svg class="focus-ring" viewBox="0 0 120 120">
+            <circle class="focus-ring-track" cx="60" cy="60" r="54" />
+            <circle id="focus-ring-progress" class="focus-ring-progress" cx="60" cy="60" r="54" />
+          </svg>
+          <p id="focus-timer" class="focus-timer" aria-live="polite">00:00</p>
+        </div>
+        <p id="focus-hint" class="focus-hint"></p>
+        <div class="focus-actions">
+          <button type="button" id="focus-next-btn" class="btn primary next-btn" hidden>次へ</button>
+          <button type="button" id="focus-exit-btn" class="btn">フォーカス解除</button>
+        </div>
+      </div>
+    </div>
+
     <div class="page">
       <header class="header">
         <div class="header-top">
-          <h1>タスク時間自動割当 <span class="version-tag">v1.5</span></h1>
-          <div class="now-clock" aria-live="polite">
-            <span class="now-label">現在時刻</span>
-            <time id="now-time" datetime="">--:--:--</time>
+          <h1>タスク時間自動割当 <span class="version-tag">v7.4</span></h1>
+          <div class="header-tools">
+            <label class="focus-toggle" title="オン時、タスク実行中はタイマーのみ表示">
+              <input id="focus-mode" type="checkbox" />
+              <span>フォーカスモード</span>
+            </label>
+            <div class="now-clock" aria-live="polite">
+              <span class="now-label">現在時刻</span>
+              <time id="now-time" datetime="">--:--:--</time>
+            </div>
           </div>
         </div>
         <p class="lede">総時間を決め、タスクに時間を割り振り、開始時刻からスケジュールを組み立てます。</p>
@@ -63,12 +87,26 @@
               所要（分）
               <input id="task-duration" type="number" min="1" step="1" value="30" required />
             </label>
+            <label>
+              優先度
+              <select id="task-priority">
+                <option value="high">高</option>
+                <option value="medium" selected>中</option>
+                <option value="low">低</option>
+              </select>
+            </label>
+            <label>
+              締切
+              <input id="task-deadline" type="date" />
+            </label>
             <button type="submit" class="btn primary">追加</button>
           </form>
           <div class="form-row actions">
             <button type="button" id="allocate-evenly" class="btn">均等に割る</button>
+            <button type="button" id="allocate-priority" class="btn">優先度・締切で割当</button>
             <button type="button" id="clear-tasks" class="btn danger-outline">すべて削除</button>
           </div>
+          <p class="meta allocate-hint">「優先度・締切で割当」は、締切が近い・優先度が高いタスクを先にし、総時間を重みで割り振ります。</p>
           <p id="form-error" class="error" hidden></p>
         </section>
 
@@ -98,6 +136,8 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">タスク名</th>
+                  <th scope="col">優先度</th>
+                  <th scope="col">締切</th>
                   <th scope="col">所要</th>
                   <th scope="col">開始</th>
                   <th scope="col">終了</th>
@@ -112,6 +152,6 @@
         </section>
       </main>
     </div>
-    <script src="app.js"></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

@@ -46,6 +46,160 @@ body {
   margin-bottom: 0.4rem;
 }
 
+.header-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.focus-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.focus-toggle input {
+  width: auto;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+body.focus-active {
+  overflow: hidden;
+}
+
+body.focus-active .page {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.focus-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(15, 106, 90, 0.22), transparent 45%),
+    radial-gradient(circle at 70% 80%, rgba(28, 36, 33, 0.18), transparent 40%),
+    #0f1a17;
+  color: #f4faf7;
+}
+
+.focus-overlay[hidden] {
+  display: none !important;
+}
+
+.focus-inner {
+  width: min(100%, 640px);
+  text-align: center;
+  display: grid;
+  gap: 1.25rem;
+  justify-items: center;
+}
+
+.focus-task-name {
+  margin: 0;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: rgba(244, 250, 247, 0.72);
+  letter-spacing: 0.04em;
+}
+
+.focus-ring-wrap {
+  --ring-size: min(78vw, 320px);
+  position: relative;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  display: grid;
+  place-items: center;
+}
+
+.focus-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.focus-ring-track,
+.focus-ring-progress {
+  fill: none;
+  stroke-width: 6;
+}
+
+.focus-ring-track {
+  stroke: rgba(255, 255, 255, 0.12);
+}
+
+.focus-ring-progress {
+  stroke: #3dcea8;
+  stroke-linecap: round;
+  stroke-dasharray: 339.292;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.35s linear, stroke 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(61, 206, 168, 0.45));
+}
+
+.focus-ring-wrap.is-done .focus-ring-progress {
+  stroke: #fde68a;
+  filter: drop-shadow(0 0 8px rgba(253, 230, 138, 0.4));
+}
+
+.focus-timer {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.4rem, 11vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: #e8fff7;
+}
+
+.focus-timer.is-done {
+  color: #fde68a;
+}
+
+.focus-hint {
+  margin: 0;
+  min-height: 1.4em;
+  color: rgba(244, 250, 247, 0.55);
+  font-size: 0.95rem;
+}
+
+.focus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.focus-overlay .btn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #f4faf7;
+}
+
+.focus-overlay .btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
 .header h1 {
   margin: 0;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
@@ -198,7 +352,8 @@ label.grow {
   flex: 1 1 220px;
 }
 
-input {
+input,
+select {
   width: 100%;
   min-width: 0;
   padding: 0.55rem 0.7rem;
@@ -207,6 +362,52 @@ input {
   background: #fff;
   color: var(--ink);
   font: inherit;
+}
+
+select {
+  width: auto;
+  min-width: 5.5rem;
+}
+
+.allocate-hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+}
+
+.priority-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.priority-badge.high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.priority-badge.medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.priority-badge.low {
+  background: #e8eef0;
+  color: #5c6b64;
+}
+
+.deadline-input,
+.priority-select {
+  width: auto;
+  min-width: 0;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.deadline-overdue {
+  color: var(--danger-ink);
+  font-weight: 600;
 }
 
 input[type="number"] {
@@ -314,7 +515,7 @@ input[type="time"] {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 720px;
+  min-width: 860px;
 }
 
 th,
@@ -367,6 +568,11 @@ tbody tr.over-limit td {
     gap: 0.75rem;
   }
 
+  .header-tools {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .now-clock {
     justify-items: start;
     align-items: center;
@@ -391,7 +597,9 @@ tbody tr.over-limit td {
   }
 
   input[type="number"],
-  input[type="time"] {
+  input[type="time"],
+  input[type="date"],
+  select {
     width: 100%;
   }
 
